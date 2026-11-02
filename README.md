@@ -12,6 +12,8 @@ error messages, not raw speed.
 - Integer and floating-point numbers, including exponents and negatives
 - Errors report the line and column of the offending character
 - Strict mode: trailing commas and trailing data are rejected
+- Serialization back to JSON via `dumps`, with optional indentation,
+  key sorting, and ASCII escaping
 
 ## Install
 
@@ -39,16 +41,35 @@ except JSONParseError as exc:
     print(exc)  # Trailing comma in object at line 1, column 9
 ```
 
+## Serializing
+
+```python
+from jsonparser import dumps
+
+dumps({"name": "ada", "ids": [1, 2, 3]})
+# '{"name": "ada", "ids": [1, 2, 3]}'
+
+print(dumps({"a": [1, 2]}, indent=2, sort_keys=True))
+# {
+#   "a": [
+#     1,
+#     2
+#   ]
+# }
+```
+
 ## Layout
 
 ```
 src/jsonparser/
     tokenizer.py   # source string -> list of tokens
     parser.py      # tokens -> Python values
-    errors.py      # JSONParseError
+    serializer.py  # Python values -> JSON string
+    errors.py      # JSONParseError, JSONSerializeError
 tests/
     test_tokenizer.py
     test_parser.py
+    test_serializer.py
 ```
 
 ## Development
