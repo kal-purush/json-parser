@@ -1,0 +1,35 @@
+# CodeRabbit configuration
+# Reference: https://docs.coderabbit.ai/reference/configuration
+language: en-US
+
+reviews:
+  profile: chill
+  request_changes_workflow: false
+  high_level_summary: true
+  review_status: true
+  poem: false
+  auto_review:
+    enabled: true
+    drafts: false
+  path_filters:
+    - "!**/*.lock"
+    - "!**/*.egg-info/**"
+    - "!**/__pycache__/**"
+    - "!build/**"
+    - "!dist/**"
+  path_instructions:
+    - path: "src/**/*.py"
+      instructions: |
+        Review library code for correctness and clarity:
+        - Flag incorrect handling of edge cases in parsing (empty input,
+          nesting depth, malformed escapes, numeric edge cases).
+        - Check that errors raise JSONParseError with position information
+          rather than bare exceptions.
+        - Note missing or unclear docstrings on public functions.
+    - path: "tests/**/*.py"
+      instructions: |
+        For tests, check coverage of edge cases and error paths, and flag
+        assertions that do not actually exercise the described behavior.
+
+chat:
+  auto_reply: true
