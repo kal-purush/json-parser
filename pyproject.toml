@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "minijson"
-version = "0.1.0"
-description = "A small, dependency-free JSON parser written from scratch."
+version = "0.2.0"
+description = "A small, dependency-free JSON parser and serializer written from scratch."
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
